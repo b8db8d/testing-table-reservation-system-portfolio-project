@@ -1,0 +1,16 @@
+{
+  
+  "MD013": false,
+  "MD024": {
+    "siblings_only": true
+  },
+  "MD033": {
+    "allowed_elements": ["kbd", "br", "span", "p"]
+  },
+  "MD007": {
+    "indent": 2
+  },
+  "MD060": {
+    "style": "compact"
+  }
+}
