@@ -1,6 +1,6 @@
 # Smoke Tests - Table Reservation System
 
-Format follows a structured template: ID, title, type, steps, expected result.
+Format follows a structured template: ID, title, steps, expected result.
 
 ## Smoke Test Cases Index
 
@@ -94,7 +94,7 @@ Format follows a structured template: ID, title, type, steps, expected result.
 - UI elements load without exceptions (HTTP 200).
 - Operating hours list corresponds with data in [reference-data](../reference-data/README.md)
 
-### ST-006 — Operating hours corresponds with reference data
+### ST-006 — Tables corresponds with reference data
 
 **Steps**
 
