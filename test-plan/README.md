@@ -7,11 +7,11 @@
 | **Environment**        | Docker Compose, local                                              |
 | **Author**             | Kacper Mirecki                                                     |
 | **Date**               | 15.05.2026                                                         |
-| **Version**            | Portfolio project                                                  |
+| **Version**            | 1.0.                                                               |
 
 ## 1. Purpose of the Document
 
-This document outlines the scope, methodology, and organization of testing for the AI-generated application based on the Table Reservation System app.
+This document outlines the scope, methodology and organization of testing Table Reservation System App.
 
 ## 2. Application State
 
@@ -34,31 +34,63 @@ The tested application passed all feature tests written in Pest by the AI agent 
 | List filter             | spatie/laravel-query-builder                    |
 | Local environment       | Docker Compose                                  |
 
-## 4. Scope and Object of Testing (Business Context)
+## 4. Scope of Testing
 
-The application is a Restaurant Table Reservation System divided into a public-facing client module and an administrative panel governed by Role-Based Access Control.
+### 4.1. In Scope
 
-### 4.1 Public Client-Facing Module
+### 4.2. Out of Scope
 
-- **Availability Search Engine:** A form allowing users to select a date, time, and guest count to query real-time table availability.
-- **Reservation Form:** Collects and validates client information (first name, last name, email, phone number, and optional additional notes).
-- **Automated Table-Joining Logic:** Core backend algorithm that automatically combines available tables when the guest count exceeds the capacity of any single available table. _(High-priority target for logical edge-case testing)._
-- **Email Confirmations:** Triggers asynchronous email alerts upon registration, confirmation, or rejection.
-- **Self-Service Cancellation:** Allows clients to cancel an already confirmed reservation via a secure, tokenized link provided in their confirmation email.
+## 5. Testing Strategy and Levels
 
-### 4.2 Administrative Panel (`/admin`)
+## 6. Testing environment
 
-- **Analytical Dashboard:** Displays real-time metrics showing the number of reservations pending approval, scheduled for today, and scheduled for tomorrow.
-- **Reservation Management:** Full CRUD capabilities with integrated global search and filtering across all reservations.
-- **Pending Queue:** A dedicated sub-view for quick triage of incoming `pending` requests.
-- **Table Resource Management:** A dictionary managing physical tables, defining their names, seat capacity, and active/inactive binary status.
-- **Table-Joining Rules Configurator:** Administrative panel to create dynamic layout rules (rule name, minimum guest threshold, and mapped physical tables).
-- **Operating Hours Management:** A interface to configure weekly schedules and closing days.
-- **Staff Account Management:** User management system enforcing Role-Based Access Control with predefined permissions for `manager` and `staff` roles.
+### 6.1. System requirements
 
-### 4.3 Two-Step Email Flow and Reservation Lifecycle
+| Element              | Value                                       |
+| -------------------- | ------------------------------------------- |
+| **Environment file** | Copy `.env.docker.example` to `.env.docker` |
+| **Browsers**         | Google Chrome                               |
+| **Tools**            | DevTools, Playwright, Mailpit               |
 
-The reservation state machine depends heavily on asynchronous email interactions and Signed URLs to process transitions securely without requiring staff authentication for single actions.
+### 6.2. Default links
 
-[todo - booking flow diagrams]
+| Localization                   | Address                                                |
+| ------------------------------ | ------------------------------------------------------ |
+| **Frontend (client)**          | <http://localhost:8000/>                               |
+| **Admin panel**                | <http://localhost:8000/admin>                          |
+| **User dashboard**             | <http://localhost:8000/dashboard>                      |
+| **Login page**                 | <http://localhost:8000/login>                          |
+| **Reservations panel (CRUD)**  | <http://localhost:8000/admin/reservations>             |
+| **Pending reservations**       | <http://localhost:8000/admin/reservations/pending>     |
+| **Restaurant tables panel**    | <http://localhost:8000/admin/tables>                   |
+| **Table joining groups panel** | <http://localhost:8000/admin/tables/groups>            |
+| **Operating hours panel**      | <http://localhost:8000/admin/settings/operating-hours> |
+| **Staff accounts management**  | <http://localhost:8000/admin/staff>                    |
+| **Mailpit (e-mail UI )**       | <http://localhost:8025>                                |
+| **Laravel Reverb (WebSocket)** | <http://localhost:8080>                                |
 
+### 6.3. Containers names
+
+| Name                 | Service        | Default port           |
+| -------------------- | -------------- | ---------------------- |
+| reservations-app     | application    | 8000                   |
+| reservations-db      | MySQL database | 3306                   |
+| reservations-mailpit | Mailpit        | 8025 - UI, 1025 - SMTP |
+
+### 6.4. CLI commands
+
+| Objective                            | Command                                                                       |
+| ------------------------------------ | ----------------------------------------------------------------------------- |
+| **Launching App via Docker Compose** | `docker compose up -d --build`                                                |
+| **Login to MySQL CLI**               | `docker exec -it reservations-db mysql -u laravel -psecret reservations_test` |
+| **Data base fresh seed**             | `docker exec -it reservations-app php artisan migrate:fresh --seed --force`   |
+| **Run WebSocket**                    | `docker exec -it reservations-app php artisan reverb:start`                   |
+| **Cache removal**                    | `docker exec -it reservations-app php artisan optimize:clear`                 |
+
+### 6.5. Test App Accounts
+
+| Name          | E-mail                 | Password | Role     |
+| ------------- | ---------------------- | -------- | -------- |
+| Test Customer | <customer@example.com> | password | customer |
+| Test Manager  | <manager@example.com>  | password | manager  |
+| Test Staff    | <staff@example.comc>   | password | staff    |
