@@ -87,7 +87,18 @@ The tested application passed all feature tests written in Pest by the AI agent 
 | **Run WebSocket**                    | `docker exec -it reservations-app php artisan reverb:start`                   |
 | **Cache removal**                    | `docker exec -it reservations-app php artisan optimize:clear`                 |
 
-### 6.5. Test App Accounts
+### 6.5. User Types
+
+Based on [user-stories.md](../user-stories/user-stories.md).
+
+**User Types:**
+
+- **Guest** — Unauthenticated visitor making or viewing a reservation
+- **Customer** — Optionally registered user with booking history access
+- **Staff** — Restaurant employee who can confirm/reject reservations
+- **Manager** — Full-access admin who manages floors, tables, and staff
+
+### 6.6. Test App Accounts
 
 | Name          | E-mail                 | Password | Role     |
 | ------------- | ---------------------- | -------- | -------- |
