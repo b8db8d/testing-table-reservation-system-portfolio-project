@@ -22,7 +22,7 @@
 **Suspected root cause:** Laravel Reverb client appears not to be initialized on `/admin`. DevTools Network → WS tab shows no WebSocket connection on the admin route, while the public `/` route does establish one (see ST-002).
 
 **Evidence:**  
-![Bug-001 screenshot](./screenshots/Bug-001.png)
+![BUG-001 screenshot](./screenshots/BUG-001.png)
 
 ---
 
@@ -50,7 +50,7 @@
 **Actual result:** There are three reservations from guest G1 with the status **Confirmed**. The manager is able to accept multiple reservations for the same time slot, even though only one table is available at that time. The system does not display any warning or information about the reservation collision.
 
 **Evidence:**
-![Bug-002 screenshot](./screenshots/Bug-002.png)
+![BUG-002 screenshot](./screenshots/BUG-002.png)
 
 ---
 
@@ -77,8 +77,8 @@
 **Suspected root cause:** The column displaying the assigned tables information is not implemented in [Index.vue](#) (lines 141-227).
 
 **Evidences:**  
-![Bug-003 screenshot a](./screenshots/Bug-003a.png)  
-![Bug-003 screenshot b](./screenshots/Bug-003b.png)
+![BUG-003 screenshot a](./screenshots/BUG-003a.png)  
+![BUG-003 screenshot b](./screenshots/BUG-003b.png)
 
 ---
 
@@ -143,6 +143,45 @@
 **Expected result:** Response returns only total number of free tables.  
 **Actual result:** Response returns detailed list containing table names and capacity.  
 **Evidence:**
-![Bug-005 screenshot](./screenshots/Bug-005.png)
+![BUG-005 screenshot](./screenshots/BUG-005.png)
+
+---
+
+**ID:** BUG-006  
+**Title:** Backend does not validate Booking Time selection field sub-values.  
+**Severity:** Minor.  
+**Environment:** Chrome 148.0.7778.178, Docker.  
+**Preconditions:** Fresh local test environment passing all smoke tests.  
+**Steps to reproduce:**
+
+1. Navigate to `/`.
+2. In Date field in **Choose date, time & guests** form check next Wednesday.
+3. Open the Browser's Inspector.
+4. Inside the `<select>` tag:
+
+   ```html
+   <select
+     id="time"
+     class="border-input focus-visible:ring-ring/50 h-9 w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-xs outline-none transition-[color,box-shadow] focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 dark:bg-input/30"
+   ></select>
+   ```
+
+   Add the following option:
+
+   ```html
+   <option value="19:59">19.59</option>
+   ```
+
+5. Fill up the **Choose date, time & guests** form with:
+   - **Time**: 19.59
+   - **Guests**: 2 guests
+6. Click the **Check availability** button.
+7. Fill the form **Your details** with credentials for G1 guest ([test-data.md](../manual-tests/test-data.md)).
+8. Click **Request reservation**.
+
+**Expected result:** System does not create pending reservation. The booking time is outside the scope of the selected sub-values. The guest gets information that time is too close to closing time.  
+**Actual result:** Reservation is created and got status **Pending**.  
+**Evidence:**  
+![BUG-006 screenshot](./screenshots/BUG-006.png)
 
 ---
