@@ -17,16 +17,17 @@ This data are seeded in fresh database.
 | Sunday    | 12:00     | 3:00       | false     |
 | Monday    | 12:00     | 22:00      | true      |
 | Tuesday   | 16:00     | 20:00      | true      |
-| Wednesday | 16:00     | 20:00      | false     |
-| Thursday  | 12:00     | 11:00      | false     |
-| Friday    | 12:00     | 02:00      | false     |
+| Wednesday | 12:00     | 20:00      | false     |
+| Thursday  | 12:00     | 23:00      | false     |
+| Friday    | 16:00     | 02:00      | false     |
 | Saturday  | 12:00     | 02:00      | false     |
 
 ## Restaurant Tables
 
 | Name     | Capacity | Is active |
 | -------- | -------- | --------- |
-| Table-2  | 2        | true      |
+| Table-2a | 2        | true      |
+| Table-2b | 2        | true      |
 | Table-6  | 6        | true      |
 | Table-12 | 12       | true      |
 

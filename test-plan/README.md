@@ -101,8 +101,10 @@ Based on [user-stories.md](../user-stories/user-stories.md).
 
 ### 6.6. Test App Accounts
 
-| Name          | E-mail                 | Password | Role     |
-| ------------- | ---------------------- | -------- | -------- |
-| Test Customer | <customer@example.com> | password | customer |
-| Test Manager  | <manager@example.com>  | password | manager  |
-| Test Staff    | <staff@example.comc>   | password | staff    |
+| Name          | E-mail                 | Password     | Role     |
+| ------------- | ---------------------- | ------------ | -------- |
+| Test Customer | <customer@example.com> | customerpass | customer |
+| Test Manager  | <manager@example.com>  | managerpass  | manager  |
+| Test Staff    | <staff@example.comc>   | staffpass    | staff    |
+
+tefe

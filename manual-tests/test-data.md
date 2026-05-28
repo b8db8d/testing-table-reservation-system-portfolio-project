@@ -14,3 +14,4 @@ File with organized test data.
 | ID  | Date           | Time  | Guests |
 | --- | -------------- | ----- | ------ |
 | B1  | Next Wednesday | 12.00 | 2      |
+| B2  | Next Thursday  | 15.00 | 8      |
