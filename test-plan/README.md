@@ -79,13 +79,14 @@ The tested application passed all feature tests written in Pest by the AI agent 
 
 ### 6.4. CLI commands
 
-| Objective                            | Command                                                                       |
+| Action                               | Command                                                                       |
 | ------------------------------------ | ----------------------------------------------------------------------------- |
 | **Launching App via Docker Compose** | `docker compose up -d --build`                                                |
 | **Login to MySQL CLI**               | `docker exec -it reservations-db mysql -u laravel -psecret reservations_test` |
-| **Data base fresh seed**             | `docker exec -it reservations-app php artisan migrate:fresh --seed --force`   |
+| **Database fresh seed**              | `docker exec -it reservations-app php artisan migrate:fresh --seed --force`   |
 | **Run WebSocket**                    | `docker exec -it reservations-app php artisan reverb:start`                   |
 | **Cache removal**                    | `docker exec -it reservations-app php artisan optimize:clear`                 |
+| **Delete all emails in Mailpit**     | `curl -s -X DELETE http://localhost:8025/api/v1/messages`                     |
 
 ### 6.5. User Types
 
