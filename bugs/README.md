@@ -1,3 +1,5 @@
+# Bug Reports
+
 **ID:** BUG-001  
 **Title:** Admin panel does not receive new reservations in real time; manual refresh required.  
 **Severity:** Major.  
@@ -59,7 +61,7 @@
 **Preconditions:** Fresh local test environment passing all smoke tests.  
 **Steps to reproduce:**
 
-1. The browser and navigate to `/`.
+1. Open the browser and navigate to `/`.
 2. Check availability for for B1 case ([test-data.md](../manual-tests/test-data.md)).
 3. Fill the form **Your details** with credentials for G1 guest ([test-data.md](../manual-tests/test-data.md)).
 4. Submit the form.
@@ -77,3 +79,51 @@
 **Evidences:**  
 ![Bug-003 screenshot a](./screenshots/Bug-003a.png)  
 ![Bug-003 screenshot b](./screenshots/Bug-003b.png)
+
+---
+
+**ID:** BUG-004.1  
+**Title:** At `/`, the guests selection field sub-values do not scale with the table guest sizes and tables joining group sizes.  
+**Severity:** Major.  
+**Environment:** Chrome 148.0.7778.178, Docker.  
+**Preconditions:** Fresh local test environment passing all smoke tests.  
+**Steps to reproduce:**
+
+**Case A**
+
+1. Open the browser and navigate to `/login`.
+2. Log in with Test Manager credentials.
+3. Navigate to `/admin/tables`.
+4. Click **Add Table** button.
+5. Fill up form with:  
+   **Capacity** = 24  
+   **Name** = Test-24  
+   **Active** = true
+6. Click **Add Table** button.
+7. Make sure, that table **Test-24** is listed and is active.
+8. Navigate to `/`.
+
+**Case B**
+
+1. Navigate to `/login`.
+2. Log in with Test Manager credentials.
+3. Navigate to `/admin/tables/groups`.
+4. Click **Add Group** button.
+5. Fill up form with:  
+   **Name** = 10 guests,
+   **Min Guests to Trigger Joining** = 10
+   **Tables** - Table-2a, Table-8.
+6. Click **Add Group** button.
+7. Make sure, that group **10 guests** is on the list.
+8. Navigate to `/`.
+
+**Expected result:** Under **Guests** selection field are sub-values in range 1 to 24 (Case A) or 1 to 10 (Case B).  
+**Actual result:** Under **Guests** selection field are sub-values in range 1 to 8.  
+**Suspected root cause:** Sub-values in guests selection field are hardcoded. File [Welcome.vue](#) (line 252).
+
+**Evidences:**  
+![BUG-004 screenshot b](./screenshots/BUG-004b.png)
+![BUG-004 screenshot a](./screenshots/BUG-004a.png)  
+![BUG-004 screenshot c](./screenshots/BUG-004c.png)
+
+---
