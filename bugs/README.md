@@ -12,7 +12,7 @@
 5. Open second instance of browser.
 6. Go to `/` and check availability for B1 case ([test-data.md](../manual-tests/test-data.md)).
 7. Fill the form **Your details** with credentials for G1 guest ([test-data.md](../manual-tests/test-data.md)).
-8. Submit form.
+8. Submit the form.
 9. Go to first browser instance.
 
 **Expected result:** Information about new reservation should show in tost in real time and pending reservations counter should increase to 1.
@@ -31,7 +31,7 @@
 **Preconditions:** Fresh local test environment passing all smoke tests.  
 **Steps to reproduce:**
 
-1. Open first instance of browser.
+1. Open the browser.
 2. Navigate to `/`.
 3. Check availability for B2 case ([test-data.md](../manual-tests/test-data.md)).
 4. Fill the form **Your details** with credentials for G1 guest ([test-data.md](../manual-tests/test-data.md)).
@@ -45,8 +45,35 @@
 12. Go to `/admin/reservations`
 
 **Expected result:** There should be only one reservation with the status **Confirmed**. The system should inform the manager that there are multiple pending reservations for the same slot (in the email, below the signed links, and also at `admin/reservations/pending`, where reservations for the same slot should be grouped). Confirming one of them should block the acceptance of other reservations for the same slot.  
-**Actual result:** There are three reservations from guest G1 with the status **Confirmed**. The manager is able to accept multiple reservations for the same time slot, even though only one table is available at that time. The system does not display any warning or information about the reservation collision.  
+**Actual result:** There are three reservations from guest G1 with the status **Confirmed**. The manager is able to accept multiple reservations for the same time slot, even though only one table is available at that time. The system does not display any warning or information about the reservation collision.
+
 **Evidence:**
 ![Bug-002 screenshot](./screenshots/Bug-002.png)
 
 ---
+
+**ID:** BUG-003  
+**Title:** Reservations panel does not show the assigned tables for reservations.  
+**Severity:** Minor.  
+**Environment:** Chrome 148.0.7778.178, Docker.  
+**Preconditions:** Fresh local test environment passing all smoke tests.  
+**Steps to reproduce:**
+
+1. The browser and navigate to `/`.
+2. Check availability for for B1 case ([test-data.md](../manual-tests/test-data.md)).
+3. Fill the form **Your details** with credentials for G1 guest ([test-data.md](../manual-tests/test-data.md)).
+4. Submit the form.
+5. Go to Mailpit UI ( default:`http://localhost:8025`).
+6. In UI search for email addressed to <manager@example.com> with subject starting with: **New reservation request**.
+7. Make sure that reservation details are consistent with data provided earlier.
+8. Click signed link **Confirm Reservation**.
+9. Go to `/login` and log in with Test Manager credentials.
+10. Go to `/admin/reservations`
+
+**Expected result:** Reservations panel should include column named **Table** showing the name of assigned tables.  
+**Actual result:** The assigned table information is missing from the reservation, despite the binding existing in the reservation_restaurant_table database table.  
+**Suspected root cause:** The column displaying the assigned tables information is not implemented in [Index.vue](#) (lines 141-227).
+
+**Evidences:**  
+![Bug-003 screenshot a](./screenshots/Bug-003a.png)  
+![Bug-003 screenshot b](./screenshots/Bug-003b.png)
