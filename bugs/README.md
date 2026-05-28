@@ -17,7 +17,7 @@
 8. Submit the form.
 9. Go to first browser instance.
 
-**Expected result:** Information about new reservation should show in tost in real time and pending reservations counter should increase to 1.
+**Expected result:** Information about new reservation shows in tost in real time and pending reservations counter increases to 1.
 **Actual result:** The number of pending reservations shows 0. No tost information. Pending reservation counter updates to 1 only after reloading admin panel.
 **Suspected root cause:** Laravel Reverb client appears not to be initialized on `/admin`. DevTools Network → WS tab shows no WebSocket connection on the admin route, while the public `/` route does establish one (see ST-002).
 
@@ -46,7 +46,7 @@
 11. Go to `/login` and log in with Test Manager credentials.
 12. Go to `/admin/reservations`
 
-**Expected result:** There should be only one reservation with the status **Confirmed**. The system should inform the manager that there are multiple pending reservations for the same slot (in the email, below the signed links, and also at `admin/reservations/pending`, where reservations for the same slot should be grouped). Confirming one of them should block the acceptance of other reservations for the same slot.  
+**Expected result:** There is only one reservation with the status **Confirmed**. The system informs the manager that there are multiple pending reservations for the same slot (in the email, below the signed links, and also at `admin/reservations/pending`, where reservations for the same slot should be grouped). Confirming one of them should block the acceptance of other reservations for the same slot.  
 **Actual result:** There are three reservations from guest G1 with the status **Confirmed**. The manager is able to accept multiple reservations for the same time slot, even though only one table is available at that time. The system does not display any warning or information about the reservation collision.
 
 **Evidence:**
@@ -72,7 +72,7 @@
 9. Go to `/login` and log in with Test Manager credentials.
 10. Go to `/admin/reservations`
 
-**Expected result:** Reservations panel should include column named **Table** showing the name of assigned tables.  
+**Expected result:** Reservations panel includes column named **Table** showing the name of assigned tables.  
 **Actual result:** The assigned table information is missing from the reservation, despite the binding existing in the reservation_restaurant_table database table.  
 **Suspected root cause:** The column displaying the assigned tables information is not implemented in [Index.vue](#) (lines 141-227).
 
@@ -125,5 +125,24 @@
 ![BUG-004 screenshot b](./screenshots/BUG-004b.png)
 ![BUG-004 screenshot a](./screenshots/BUG-004a.png)  
 ![BUG-004 screenshot c](./screenshots/BUG-004c.png)
+
+---
+
+**ID:** BUG-005  
+**Title:** Checking available tables returns a detailed list of tables instead of the total count.  
+**Severity:** Minor.  
+**Environment:** Chrome 148.0.7778.178, Docker.  
+**Preconditions:** Fresh local test environment passing all smoke tests.  
+**Steps to reproduce:**
+
+1. Navigate to `/`.
+2. Open DevTools -> Network, select **Fetch/XHR** tab.
+3. Check availability for for B1 case ([test-data.md](../manual-tests/test-data.md)).
+4. Check Inertia response in DevTools.
+
+**Expected result:** Response returns only total number of free tables.  
+**Actual result:** Response returns detailed list containing table names and capacity.  
+**Evidence:**
+![Bug-005 screenshot](./screenshots/Bug-005.png)
 
 ---
