@@ -17,8 +17,8 @@
 8. Submit the form.
 9. Go to first browser instance.
 
-**Expected result:** Information about new reservation shows in tost in real time and pending reservations counter increases to 1.
-**Actual result:** The number of pending reservations shows 0. No tost information. Pending reservation counter updates to 1 only after reloading admin panel.
+**Expected result:** Information about new reservation shows in toast in real time and pending reservations counter increases to 1.
+**Actual result:** The number of pending reservations shows 0. No toast information. Pending reservation counter updates to 1 only after reloading admin panel.
 **Suspected root cause:** Laravel Reverb client appears not to be initialized on `/admin`. DevTools Network → WS tab shows no WebSocket connection on the admin route, while the public `/` route does establish one (see ST-002).
 
 **Evidence:**  
@@ -50,7 +50,8 @@
 **Actual result:** There are three reservations from guest G1 with the status **Confirmed**. The manager is able to accept multiple reservations for the same time slot, even though only one table is available at that time. The system does not display any warning or information about the reservation collision.
 
 **Evidence:**
-![BUG-002 screenshot](./screenshots/BUG-002.png)
+![BUG-002a screenshot](./screenshots/BUG-002a.png)
+![BUG-002b screenshot](./screenshots/BUG-002b.png)
 
 ---
 
@@ -169,11 +170,11 @@
    Add the following option:
 
    ```html
-   <option value="19:59">19.59</option>
+   <option value="19:59">19:59</option>
    ```
 
 5. Fill up the **Choose date, time & guests** form with:
-   - **Time**: 19.59
+   - **Time**: 19:59
    - **Guests**: 2 guests
 6. Click the **Check availability** button.
 7. Fill the form **Your details** with credentials for G1 guest ([test-data.md](../manual-tests/test-data.md)).
