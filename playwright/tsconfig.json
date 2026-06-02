@@ -9,11 +9,8 @@
       "@fixtures/*": ["tests/fixtures/*"],
       "@pages/*": ["tests/pages/*"],
       "@setup/*": ["tests/setup/*"],
-      "@utils/*": ["tests/utils/*"],
+      "@utils/*": ["tests/utils/*"]
     }
   },
-  "include": [
-    "tests/**/*.ts",
-    "playwright.config.ts"
-  ]
+  "include": ["tests/**/*.ts", "playwright.config.ts"]
 }
