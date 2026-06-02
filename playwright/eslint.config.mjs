@@ -13,8 +13,14 @@ export default [
     rules: {
       'no-shadow': 'off',
       '@typescript-eslint/no-shadow': 'error',
-
+      'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    },
+  },
+  {
+    files: ['**/fixtures/**/*.ts'],
+    rules: {
+      'no-empty-pattern': 'off',
     },
   },
 ];
