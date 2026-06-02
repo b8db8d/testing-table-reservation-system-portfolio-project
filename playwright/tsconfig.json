@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "ignoreDeprecations": "6.0",
+    "types": ["node"],
+    "baseUrl": ".",
+    "paths": {
+      "@data/*": ["tests/data/*"],
+      "@e2e/*": ["tests/e2e/*"],
+      "@fixtures/*": ["tests/fixtures/*"],
+      "@pages/*": ["tests/pages/*"],
+      "@setup/*": ["tests/setup/*"],
+      "@utils/*": ["tests/utils/*"],
+    }
+  },
+  "include": [
+    "tests/**/*.ts",
+    "playwright.config.ts"
+  ]
+}
