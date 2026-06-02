@@ -19,6 +19,7 @@ Full reports are in [bugs/](./bugs/).
 
 ## Table of Contents
 
+- **[bugs/](./bugs/)** -
 - **[manual-tests/](./manual-tests/)** -
 - **[playwright/](./playwright/)** -
 - **[test-plan/](./test-plan/)** -

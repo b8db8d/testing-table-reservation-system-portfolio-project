@@ -81,11 +81,11 @@ The tested application passed all feature tests written in Pest by the AI agent 
 
 | Action                               | Command                                                                       |
 | ------------------------------------ | ----------------------------------------------------------------------------- |
-| **Launching App via Docker Compose** | `docker compose up -d --build`                                                |
+| **Launching App via Docker Compose** | `docker compose up --build -d`                                                |
 | **Login to MySQL CLI**               | `docker exec -it reservations-db mysql -u laravel -psecret reservations_test` |
-| **Database fresh seed**              | `docker exec -it reservations-app php artisan migrate:fresh --seed --force`   |
-| **Run WebSocket**                    | `docker exec -it reservations-app php artisan reverb:start`                   |
-| **Cache removal**                    | `docker exec -it reservations-app php artisan optimize:clear`                 |
+| **Database fresh seed**              | `docker exec reservations-app php artisan migrate:fresh --seed --force`   |
+| **Run WebSocket**                    | `docker exec reservations-app php artisan reverb:start`                   |
+| **Cache removal**                    | `docker exec reservations-app php artisan optimize:clear`                 |
 | **Delete all emails in Mailpit**     | `curl -s -X DELETE http://localhost:8025/api/v1/messages`                     |
 
 ### 6.5. User Types
@@ -107,4 +107,4 @@ Based on [user-stories.md](../user-stories/user-stories.md).
 | Test Manager  | <manager@example.com>  | managerpass  | manager  |
 | Test Staff    | <staff@example.comc>   | staffpass    | staff    |
 
-tefe
+
