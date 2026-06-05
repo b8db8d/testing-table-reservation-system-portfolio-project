@@ -20,6 +20,7 @@ Format follows a structured template: ID, title, steps, expected result.
    - **reservations-app**
    - **reservations-db**
    - **reservations-mailpit**
+   - **reservations-reverb**
 3. Database migrations and seeders execute successfully, establishing a clean testing state.
 4. The backend WebSocket server launches without exceptions.
 
