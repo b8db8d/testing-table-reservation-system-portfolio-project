@@ -14,7 +14,7 @@ This data are seeded in fresh database.
 
 | Day       | Open Time | Close Time | Is Closed |
 | --------- | --------- | ---------- | --------- |
-| Sunday    | 12:00     | 3:00       | false     |
+| Sunday    | 12:00     | 03:00      | false     |
 | Monday    | 12:00     | 22:00      | true      |
 | Tuesday   | 16:00     | 20:00      | true      |
 | Wednesday | 12:00     | 20:00      | false     |
@@ -30,5 +30,4 @@ This data are seeded in fresh database.
 | Table-2b | 2        | true      |
 | Table-5  | 5        | true      |
 | Table-6  | 6        | true      |
-| Table-8  | 6        | true      |
-
+| Table-8  | 8        | true      |
