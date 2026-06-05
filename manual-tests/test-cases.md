@@ -1,6 +1,4 @@
-# Test data
-
-File with organized test data.
+# Test Cases
 
 ## Test Guests
 
