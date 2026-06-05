@@ -60,7 +60,7 @@ WebSocket inconsistency: the public page updates in real time, but the admin das
 11. Go to `/login` and log in with Test Manager credentials.
 12. Go to `/admin/reservations`
 
-**Expected result:** TOnly one reservation should be confirmed successfully. The system informs the manager that there are multiple pending reservations for the same slot (in the email, below the signed links, and also at `admin/reservations/pending`, where reservations for the same slot should be grouped). Confirming one of them should block the acceptance of other reservations for the same slot.  
+**Expected result:** Only one reservation should be confirmed successfully. The system informs the manager that there are multiple pending reservations for the same slot (in the email, below the signed links, and also at `admin/reservations/pending`, where reservations for the same slot should be grouped). Confirming one of them should block the acceptance of other reservations for the same slot.  
 **Actual result:** There are three reservations from guest G1 with the status **Confirmed**. The manager is able to accept multiple reservations for the same time slot, even though only one table is available at that time. The system does not display any warning or information about the reservation collision.
 **Comment:**  
 Violation of US-3.2.(On-confirmation: Time slot is blocked in the system for the reserved table).
