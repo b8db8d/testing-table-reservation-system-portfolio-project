@@ -138,13 +138,48 @@
 
 1. Navigate to `/`.
 2. Open DevTools -> Network, select **Fetch/XHR** tab.
-3. Check availability for for B1 case ([test-data.md](../manual-tests/test-data.md)).
+3. Check availability for B1 case ([test-data.md](../manual-tests/test-data.md)).
 4. Check Inertia response in DevTools.
 
 **Expected result:** Response returns only total number of free tables.  
 **Actual result:** Response returns detailed list containing table names and capacity.  
 **Evidence:**
 ![BUG-005 screenshot](./screenshots/BUG-005.png)
+Response:
+
+```json
+{
+  "available": true,
+  "individual_tables": [
+    {
+      "id": 1,
+      "name": "Table-2a",
+      "capacity": 2
+    },
+    {
+      "id": 2,
+      "name": "Table-2b",
+      "capacity": 2
+    },
+    {
+      "id": 3,
+      "name": "Table-5",
+      "capacity": 5
+    },
+    {
+      "id": 4,
+      "name": "Table-6",
+      "capacity": 6
+    },
+    {
+      "id": 5,
+      "name": "Table-8",
+      "capacity": 8
+    }
+  ],
+  "joining_groups": []
+}
+```
 
 ---
 
