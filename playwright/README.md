@@ -5,16 +5,16 @@ Built with Playwright + TypeScript.
 
 ## Tests Index
 
-| ID     | Area                                                                                            | File                                                                            |
-| ------ | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| TC-001 | operating hours: checking available slot on closed day informs client that restaurant is closed | [01-operating-hours.spec.ts](./playwright/tests/e2e/01-operating-hours.spec.ts) |
-| TC-002 | operating hours: outside of schedule are not available for selection                            | [01-operating-hours.spec.ts](./playwright/tests/e2e/01-operating-hours.spec.ts) |
-| TC-003 | booking flow, rejection: submit, pending, reject, notify                                        | [02-booking-flow.spec.ts](./playwright/tests/e2e/02-booking-flow.spec.ts)       |
-| TC-004 | booking flow, confirmation and cancellation: submit, pending, confirm, notify, cancel, notify   | [02-booking-flow.spec.ts](./playwright/tests/e2e/02-booking-flow.spec.ts)       |
-| TC-005 | permissions, staff: reservations CRUD does not show 'Delete' button                             | [03-permissions.spec.ts](./playwright/tests/e2e/03-permissions.spec.ts)         |
-| TC-006 | permissions, staff: access to restaurant tables dashboard is denied                             | [03-permissions.spec.ts](./playwright/tests/e2e/03-permissions.spec.ts)         |
-| TC-007 | permissions, manager: reservations CRUD shows 'Delete' button                                   | [03-permissions.spec.ts](./playwright/tests/e2e/03-permissions.spec.ts)         |
-| TC-008 | permissions, manager: reaching restaurant tables dashboard returns 200                          | [03-permissions.spec.ts](./playwright/tests/e2e/03-permissions.spec.ts)         |
+| ID     | Area                                                                                            | File                                                                 |
+| ------ | ----------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| TC-001 | operating hours: checking available slot on closed day informs client that restaurant is closed | [01-operating-hours.spec.ts](./tests/e2e/01-operating-hours.spec.ts) |
+| TC-002 | operating hours: outside of schedule are not available for selection                            | [01-operating-hours.spec.ts](.tests/e2e/01-operating-hours.spec.ts)  |
+| TC-003 | booking flow, rejection: submit, pending, reject, notify                                        | [02-booking-flow.spec.ts](./tests/e2e/02-booking-flow.spec.ts)       |
+| TC-004 | booking flow, confirmation and cancellation: submit, pending, confirm, notify, cancel, notify   | [02-booking-flow.spec.ts](./tests/e2e/02-booking-flow.spec.ts)       |
+| TC-005 | permissions, staff: reservations CRUD does not show 'Delete' button                             | [03-permissions.spec.ts](./tests/e2e/03-permissions.spec.ts)         |
+| TC-006 | permissions, staff: access to restaurant tables dashboard is denied                             | [03-permissions.spec.ts](./tests/e2e/03-permissions.spec.ts)         |
+| TC-007 | permissions, manager: reservations CRUD shows 'Delete' button                                   | [03-permissions.spec.ts](./tests/e2e/03-permissions.spec.ts)         |
+| TC-008 | permissions, manager: reaching restaurant tables dashboard returns 200                          | [03-permissions.spec.ts](./tests/e2e/03-permissions.spec.ts)         |
 
 ## How to Run
 
