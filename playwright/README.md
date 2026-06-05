@@ -3,7 +3,7 @@
 End-to-end automated tests for the [Table Reservation System](https://github.com/b8db8d/Table-Reservation-System).
 Built with Playwright + TypeScript.
 
-## Coverage
+## Tests Index
 
 | ID     | Area                                                                                            | File                                                                            |
 | ------ | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
@@ -12,7 +12,7 @@ Built with Playwright + TypeScript.
 | TC-003 | booking flow, rejection: submit, pending, reject, notify                                        | [02-booking-flow.spec.ts](./playwright/tests/e2e/02-booking-flow.spec.ts)       |
 | TC-004 | booking flow, confirmation and cancellation: submit, pending, confirm, notify, cancel, notify   | [02-booking-flow.spec.ts](./playwright/tests/e2e/02-booking-flow.spec.ts)       |
 | TC-005 | permissions, staff: reservations CRUD does not show 'Delete' button                             | [03-permissions.spec.ts](./playwright/tests/e2e/03-permissions.spec.ts)         |
-| TC-006 | permissions, staff: see pending reservation                                                     | [03-permissions.spec.ts](./playwright/tests/e2e/03-permissions.spec.ts)         |
+| TC-006 | permissions, staff: access to restaurant tables dashboard is denied                             | [03-permissions.spec.ts](./playwright/tests/e2e/03-permissions.spec.ts)         |
 | TC-007 | permissions, manager: reservations CRUD shows 'Delete' button                                   | [03-permissions.spec.ts](./playwright/tests/e2e/03-permissions.spec.ts)         |
 | TC-008 | permissions, manager: reaching restaurant tables dashboard returns 200                          | [03-permissions.spec.ts](./playwright/tests/e2e/03-permissions.spec.ts)         |
 
@@ -59,5 +59,4 @@ tests/
 - **Email verification via Mailpit API, not UI.** Email assertions use Mailpit's HTTP API rather than scraping the Mailpit web UI.
 - **Browser context per role.** Multi-role tests (staff vs. manager) use separate browser contexts via fixtures, preventing session interference within a single test.
 - **Timestamp in email address** Provides correct case mapping during parallel testing.
-- **Cache cleanup auto-fixture.** Automatically clears Laravel cache between tests to prevent flaky tests.
 - **Cache cleanup auto-fixture.** Automatically clears Laravel cache between tests to prevent flaky tests.

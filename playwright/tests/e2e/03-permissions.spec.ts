@@ -14,7 +14,9 @@ test.describe('Staff permissions', () => {
     ).not.toBeVisible();
   });
 
-  test('TC-006 permissions, staff: see pending reservation', async ({ staffSession }) => {
+  test('TC-006 permissions, staff: access to restaurant tables dashboard is denied', async ({
+    staffSession,
+  }) => {
     const response = await staffSession.goto('/admin/tables');
     expect(response?.status()).toBe(403);
   });
