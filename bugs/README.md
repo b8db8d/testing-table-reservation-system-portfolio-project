@@ -1,20 +1,21 @@
 # Bug Reports
 
-Total: 6 reports (5 Major, 1 Minor)
+Total: 6 reports (1 Critical, 4 Major, 1 Minor)
 Bugs found during exploratory testing.
 
-| ID      | Severity | Title                                                                                                                 |
-| ------- | -------- | --------------------------------------------------------------------------------------------------------------------- |
-| BUG-001 | Major    | Admin panel does not receive new reservations in real time; manual refresh required.                                  |
-| BUG-002 | Major    | The system allows the manager to confirm reservations even when the slot is fully booked.                             |
-| BUG-003 | Major    | Reservations panel does not show the assigned tables for reservations.                                                |
-| BUG-004 | Major    | At `/`, the guests selection field sub-values do not scale with the table guest sizes and tables joining group sizes. |
-| BUG-005 | Major    | Checking available tables returns a detailed list of tables instead of the total count.                               |
-| BUG-006 | Major    | Backend does not validate Booking Time selection field sub-values.                                                    |
+| ID      | Severity | Priority | Title                                                                                                                 |
+| ------- | -------- | -------- | --------------------------------------------------------------------------------------------------------------------- |
+| BUG-001 | Major    | P3       | Admin panel does not receive new reservations in real time; manual refresh required.                                  |
+| BUG-002 | Critical | P1       | The system allows the manager to confirm reservations even when the slot is fully booked.                             |
+| BUG-003 | Major    | P2       | Reservations panel does not show the assigned tables for reservations.                                                |
+| BUG-004 | Major    | P2       | At `/`, the guests selection field sub-values do not scale with the table guest sizes and tables joining group sizes. |
+| BUG-005 | Minor    | P4       | Checking available tables returns a detailed list of tables instead of the total count.                               |
+| BUG-006 | Major    | P3       | Backend does not validate Booking Time selection field sub-values.                                                    |
 
 **ID:** BUG-001  
 **Title:** Admin panel does not receive new reservations in real time; manual refresh required.  
 **Severity:** Major.  
+**Priority:** P3  
 **Environment:** Chrome 148.0.7778.178, Docker.  
 **Preconditions:** Fresh local test environment passing smoke tests ST-001, ST-002, ST-003.  
 **Steps to reproduce:**
@@ -33,7 +34,7 @@ Bugs found during exploratory testing.
 **Actual result:** The number of pending reservations shows 0. No toast information. Pending reservation counter updates to 1 only after reloading admin panel.
 **Suspected root cause:** Laravel Reverb client appears not to be initialized on `/admin`. DevTools Network → WS tab shows no WebSocket connection on the admin route, while the public `/` route does establish one (see ST-002).  
 **Comment:**  
-WebSocket inconsistency: the public page updates in real time, but the admin dashboard doesn't. TThis inconsistency suggests an implementation oversight rather than intentional design.
+WebSocket inconsistency: the public page updates in real time, but the admin dashboard doesn't. This inconsistency suggests an implementation oversight rather than intentional design.
 
 **Evidence:**
 
@@ -43,7 +44,8 @@ WebSocket inconsistency: the public page updates in real time, but the admin das
 
 **ID:** BUG-002  
 **Title:** The system allows the manager to confirm reservations even when the slot is fully booked.  
-**Severity:** Major.  
+**Severity:** Critical  
+**Priority:** P1  
 **Environment:** Chrome 148.0.7778.178, Docker.  
 **Preconditions:** Fresh local test environment passing all smoke tests.  
 **Steps to reproduce:**
@@ -75,7 +77,8 @@ Violation of US-3.2.(On-confirmation: Time slot is blocked in the system for the
 
 **ID:** BUG-003  
 **Title:** Reservations panel does not show the assigned tables for reservations.  
-**Severity:** Major.  
+**Severity:** Major  
+**Priority:** P2  
 **Environment:** Chrome 148.0.7778.178, Docker.  
 **Preconditions:** Fresh local test environment passing all smoke tests.  
 **Steps to reproduce:**
@@ -107,7 +110,8 @@ Gap in US-4.1: There is no mention of a table/joining group column in the "All R
 
 **ID:** BUG-004  
 **Title:** At `/`, the guests selection field sub-values do not scale with the table guest sizes and tables joining group sizes.  
-**Severity:** Major.  
+**Severity:** Major  
+**Priority:** P2  
 **Environment:** Chrome 148.0.7778.178, Docker.  
 **Preconditions:** Fresh local test environment passing all smoke tests.  
 **Steps to reproduce:**
@@ -118,7 +122,7 @@ Gap in US-4.1: There is no mention of a table/joining group column in the "All R
 2. Log in with Test Manager credentials.
 3. Navigate to `/admin/tables`.
 4. Click **Add Table** button.
-5. Fill up form with:  
+5. Fill the form with:  
    **Capacity** = 24  
    **Name** = Test-24  
    **Active** = true
@@ -132,7 +136,7 @@ Gap in US-4.1: There is no mention of a table/joining group column in the "All R
 2. Log in with Test Manager credentials.
 3. Navigate to `/admin/tables/groups`.
 4. Click **Add Group** button.
-5. Fill up form with:  
+5. Fill the form with:  
    **Name** = 10 guests,
    **Min Guests to Trigger Joining** = 10
    **Tables** - Table-2a, Table-8.
@@ -157,7 +161,8 @@ Violation of US-1.2
 
 **ID:** BUG-005  
 **Title:** Checking available tables returns a detailed list of tables instead of the total count.  
-**Severity:** Minor.  
+**Severity:** Minor  
+**Priority:** P4  
 **Environment:** Chrome 148.0.7778.178, Docker.  
 **Preconditions:** Fresh local test environment passing all smoke tests.  
 **Steps to reproduce:**
@@ -167,7 +172,7 @@ Violation of US-1.2
 3. Check availability for B1 case ([test-data.md](../manual-tests/test-data.md)).
 4. Check Inertia response in DevTools.
 
-**Expected result:** Response returns only data necessary the UI to render, without exposing internal table identifiers, names, or capacities to the client..  
+**Expected result:** Response returns only data necessary for the UI to render, without exposing internal table identifiers, names, or capacities to the client.  
 **Actual result:** Response returns detailed list containing table names and capacity.  
 **Comment:** Recommendation Gap.
 
@@ -215,7 +220,8 @@ Response:
 
 **ID:** BUG-006  
 **Title:** Backend does not validate Booking Time selection field sub-values.  
-**Severity:** Major.  
+**Severity:** Major  
+**Priority:** P3  
 **Environment:** Chrome 148.0.7778.178, Docker.  
 **Preconditions:** Fresh local test environment passing all smoke tests.  
 **Steps to reproduce:**
@@ -238,7 +244,7 @@ Response:
    <option value="19:59">19:59</option>
    ```
 
-5. Fill up the **Choose date, time & guests** form with:
+5. Fill the **Choose date, time & guests** form with:
    - **Time**: 19:59
    - **Guests**: 2 guests
 6. Click the **Check availability** button.

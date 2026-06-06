@@ -23,14 +23,14 @@ GitLab Mirror Table-Reservation-System Repository with bug reports in Polish: <h
 
 ## Bugs Index
 
-| ID      | Severity | Title                                                                                                                 |
-| ------- | -------- | --------------------------------------------------------------------------------------------------------------------- |
-| BUG-001 | Major    | Admin panel does not receive new reservations in real time; manual refresh required.                                  |
-| BUG-002 | Major    | The system allows the manager to confirm reservations even when the slot is fully booked.                             |
-| BUG-003 | Major    | Reservations panel does not show the assigned tables for reservations.                                                |
-| BUG-004 | Major    | At `/`, the guests selection field sub-values do not scale with the table guest sizes and tables joining group sizes. |
-| BUG-005 | Major    | Checking available tables returns a detailed list of tables instead of the total count.                               |
-| BUG-006 | Major    | Backend does not validate Booking Time selection field sub-values.                                                    |
+| ID      | Severity | Priority | Title                                                                                                                 |
+| ------- | -------- | -------- | --------------------------------------------------------------------------------------------------------------------- |
+| BUG-001 | Major    | P3       | Admin panel does not receive new reservations in real time; manual refresh required.                                  |
+| BUG-002 | Critical | P1       | The system allows the manager to confirm reservations even when the slot is fully booked.                             |
+| BUG-003 | Major    | P2       | Reservations panel does not show the assigned tables for reservations.                                                |
+| BUG-004 | Major    | P2       | At `/`, the guests selection field sub-values do not scale with the table guest sizes and tables joining group sizes. |
+| BUG-005 | Minor    | P4       | Checking available tables returns a detailed list of tables instead of the total count.                               |
+| BUG-006 | Major    | P3       | Backend does not validate Booking Time selection field sub-values.                                                    |
 
 Full reports are in [bugs/](./bugs/).
 
